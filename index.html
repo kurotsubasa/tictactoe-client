@@ -15,6 +15,7 @@
     <header>
       <nav>
       <button type='button' id='gameStart'>Start Game!</button>
+      <p id='user'></p>
       </nav>
     </header>
 
@@ -27,6 +28,7 @@
               <input name="credentials[email]" type="email" placeholder="you@example.com">
               <input name="credentials[password]" type="password" placeholder="Password">
               <input name="credentials[password_confirmation]" type="password" placeholder="Confirm Password">
+              <input type='submit' value='Sign up!'>
             </fieldset>
         </form>
 
@@ -57,16 +59,15 @@
 
           <div class='container text-center'>
             <div class='row'>
-              <div class='box col-4' id='0'></div>
-              <div class='box col-4' id='1'></div>
-              <div class='box col-4' id='2'></div>
-              <div class='box col-4' id='3'></div>
-              <div class='box col-4' id='4'></div>
-              <div class='box col-4' id='5'></div>
-              <div class='box col-4' id='6'></div>
-              <div class='box col-4' id='7'></div>
-              <div class='box col-4' id='8'></div>
-              <div class='box col-4' id='9'></div>
+              <div class='help box col-4' data-cell-index='0' id='1'></div>
+              <div class='help box col-4' data-cell-index='1' id='6'></div>
+              <div class='help box col-4' data-cell-index='2' id='5'></div>
+              <div class='help box col-4' data-cell-index='3' id='8'></div>
+              <div class='help box col-4' data-cell-index='4' id='4'></div>
+              <div class='help box col-4' data-cell-index='5' id='0'></div>
+              <div class='help box col-4' data-cell-index='6' id='3'></div>
+              <div class='help box col-4' data-cell-index='7' id='2'></div>
+              <div class='help box col-4' data-cell-index='8' id='7'></div>
             </div>
           </div>
     </main>

@@ -1,10 +1,11 @@
-'use strict'
+// 'use strict'
 
 const store = require('./../store')
+const events = require('./events')
 
 const onSignUpSuccess = function (response) {
   $('#message').text('Welcome to the beginning of your defeat ' + response.user.email)
-  $('sign-up').trigger('reset')
+  $('#sign-up').trigger('reset')
   $('#message').removeClass()
   $('#message').addClass('.success')
 }
@@ -48,8 +49,55 @@ const onSignOutSuccess = function (response) {
   $('.container').hide()
 }
 
+const onSignOutFailure = function (response) {
+  $('#message').text('failed to sign out')
+}
 
+const onCreateGameSuccessful = function (response) {
+  $('#message').text('game created')
+  store.game = response.game
+}
+
+const onCreateGameFailure = function (response) {
+  $('#message').text('failed to create game')
+}
+
+const onUpdateGameSuccessful = function (response) {
+  $('#message').text('yes')
+}
+
+const onUpdateGameFailure = function (response) {
+  $('#message').text('no')
+}
+
+// const player_x = 'X'
+// const player_o = 'O'
+// let currentPlayer = player_x
+// const onUpdateGameSuccessful = function (response) {
+//   let turns = 0
+//   turns++
+//   store.turns = turns
+//   $('.id').text(currentPlayer)
+//   function switchPlayer (player1, player2) {
+//     if (currentPlayer === player1) {
+//       currentPlayer = player2
+//     } else {
+//       currentPlayer = player1
+//     }
+//   }
+//   switchPlayer(player_x, player_o)
+// }
 module.exports = {
-  switchPlayer,
-  currentPlayer
+  onSignUpSuccess,
+  onSignUpFailure,
+  onSignInSuccess,
+  onSignInFailure,
+  onChangePasswordSuccess,
+  onChangePasswordFailure,
+  onSignOutSuccess,
+  onSignOutFailure,
+  onCreateGameSuccessful,
+  onCreateGameFailure,
+  onUpdateGameSuccessful,
+  onUpdateGameFailure
 }

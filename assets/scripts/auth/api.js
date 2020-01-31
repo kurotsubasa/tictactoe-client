@@ -51,26 +51,43 @@ const getGames = () => {
 const getGame = (formData) => {
   return $.ajax({
     method: 'GET',
-    url: config.apiUrl + '/games/' + formData.game.id
+    url: config.apiUrl + '/games/' + store.game.id
   })
 }
 
-const updateGame = (formData) => {
+const updateGame = (data) => {
   return $.ajax({
     method: 'PATCH',
-    url: config.apiUrl + '/games/' + formData.game.id,
-    data: formData
+    url: config.apiUrl + '/games/' + store.game.id,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data
   })
 }
 
 const getGameWatch = (formData) => {
   return $.ajax({
     method: 'GET',
-    url: config.apiUrl + '/games/' + formData.game.id + 'watch'
+    url: config.apiUrl + '/games/' + store.game.id + 'watch',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
-module.expoerts = {
+const createGame = () => {
+  return $.ajax({
+    method: 'POST',
+    url: config.apiUrl + '/games',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {}
+  })
+}
+
+module.exports = {
   signUp,
   signIn,
   changePassword,
@@ -78,5 +95,6 @@ module.expoerts = {
   getGames,
   getGame,
   updateGame,
-  getGameWatch
+  getGameWatch,
+  createGame
 }

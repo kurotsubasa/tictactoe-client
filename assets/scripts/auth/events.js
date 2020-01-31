@@ -3,18 +3,27 @@
 const getFormFields = require('./../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
-const gameArray = [2, 7, 6, 9, 5, 1, 4, 3, 8]
-let gridValue = []
-let turns = 0
-const player_x = 'X'
-const player_o = 'O'
+const gridValue = []
 
-let currentPlayer = player_x
-function switchPlayer (player1, player2) {
-  if (currentPlayer === player1) {
-    currentPlayer = player2
+function winOrNo () {
+  let total = 0
+  let end
+  for (let i = 0; i < gridValue.length; i++) {
+    total += gridValue[i]
+  }
+  if (total === 15) {
+    end = true
   } else {
-    currentPlayer = player1
+    end = false
+  }
+  return end
+}
+
+function over (endGame) {
+  if (endGame === true) {
+    return endGame
+  } else {
+    return false
   }
 }
 
@@ -22,7 +31,6 @@ const onSignUp = function (event) {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   api.signUp(data)
     .then(ui.onSignUpSuccess)
@@ -75,49 +83,52 @@ const onGetGame = event => {
     .catch(ui.onGetGameSuccessful)
 }
 
-const onUpdateGame = event => {
-  event.preventDefauilt()
-  const form = event.target
-  const formData = getFormFields(form)
-
-  api.updateGame(formData)
-    .then(ui.onUpdateGameSuccessful)
-    .catch(ui.onUpdateBookFailure)
-}
-
 const onCreateGame = event => {
   event.preventDefault()
   const form = event.target
   const formData = getFormFields(form)
 
-  api.createBook(formData)
-    .then(ui.onCreateBookSuccessful)
+  api.createGame(formData)
+    .then(ui.onCreateGameSuccessful)
     .catch(ui.onCreateGameFailure)
 }
 
-const onChooseMove = event => {
+const players = ['x', 'o']
+let currentPlayer = players[0]
+
+const onClick = event => {
   event.preventDefault()
-  const form = event.target
-  const data = getFormFields(form)
-  gridValue += gameArray[Number(event.target)]
-  turns++
-  switchPlayer(player_x, player_o)
+  gridValue.push((Number(event.target) + 1))
+  over(winOrNo)
+  const ew = event.target.getAttribute('data-cell-index')
+  $(event.target).text(currentPlayer)
+  const data = {
+    'game': {
+      'cell': {
+        'index': `${ew}`,
+        'value': `${currentPlayer}`
+      },
+      'over': over(winOrNo)
+    }
+  }
+
+  if (currentPlayer === players[0]) {
+    currentPlayer = players[1]
+  } else {
+    currentPlayer = players[0]
+  }
   api.updateGame(data)
     .then(ui.onUpdateGameSuccessful)
     .catch(ui.onUpdateGameFailure)
 }
 
-
-
 module.exports = {
-  gridValue,
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut,
   onGetGames,
   onGetGame,
-  onUpdateGame,
   onCreateGame,
-  onChooseMove
+  onClick
 }
