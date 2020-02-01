@@ -6,17 +6,26 @@ const ui = require('./ui')
 const gridValue = []
 
 function winOrNo () {
-  let total = 0
-  let end
   for (let i = 0; i < gridValue.length; i++) {
-    total += gridValue[i]
+    let totalX = 0
+    let totalO = 0
+
+    if (i === 0 || i % 2 === 0) {
+      totalX += gridValue[i]
+      if (totalX === 15) {
+        return true
+      } else {
+        return false
+      }
+    } else {
+      totalO += gridValue[i]
+      if (totalO === 15) {
+        return true
+      } else {
+        return false
+      }
+    }
   }
-  if (total === 15) {
-    end = true
-  } else {
-    end = false
-  }
-  return end
 }
 
 function over (endGame) {
@@ -101,7 +110,13 @@ const onClick = event => {
   gridValue.push((Number(event.target) + 1))
   over(winOrNo)
   const ew = event.target.getAttribute('data-cell-index')
-  $(event.target).text(currentPlayer)
+
+  if ($(event.target).text() === '') {
+    $(event.target).text(currentPlayer)
+  } else {
+    $('#message').text('this spot is taken')
+  }
+
   const data = {
     'game': {
       'cell': {
@@ -117,6 +132,8 @@ const onClick = event => {
   } else {
     currentPlayer = players[0]
   }
+
+
   api.updateGame(data)
     .then(ui.onUpdateGameSuccessful)
     .catch(ui.onUpdateGameFailure)
