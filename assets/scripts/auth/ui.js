@@ -67,7 +67,12 @@ const onUpdateGameSuccessful = function (response) {
 }
 
 const onUpdateGameFailure = function (response) {
-  $('#message').text('no')
+  $('#message').text('rip')
+}
+
+const onGameOver = function (response) {
+  $('#help').off()
+  $('#message').text('game over')
 }
 
 // const player_x = 'X'
@@ -99,5 +104,6 @@ module.exports = {
   onCreateGameSuccessful,
   onCreateGameFailure,
   onUpdateGameSuccessful,
-  onUpdateGameFailure
+  onUpdateGameFailure,
+  onGameOver
 }

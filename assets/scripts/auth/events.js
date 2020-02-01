@@ -133,10 +133,15 @@ const onClick = event => {
     currentPlayer = players[0]
   }
 
-
   api.updateGame(data)
     .then(ui.onUpdateGameSuccessful)
     .catch(ui.onUpdateGameFailure)
+}
+
+const onGameEnd = event => {
+  if (over(winOrNo) === true) {
+    ui.onGameOver
+  }
 }
 
 module.exports = {
