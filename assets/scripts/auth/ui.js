@@ -1,4 +1,4 @@
-// 'use strict'
+'use strict'
 
 const store = require('./../store')
 const events = require('./events')
@@ -22,7 +22,6 @@ const onSignInSuccess = function (response) {
   store.user = response.user
   $('#sign-out').show()
   $('#change-password').show()
-  $('.container').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
 }
@@ -55,6 +54,11 @@ const onSignOutFailure = function (response) {
 
 const onCreateGameSuccessful = function (response) {
   $('#message').text('game created')
+  $('.container').show()
+  $('.box').show()
+  $('.help').trigger('reset')
+  $('.help').on('click', events.onClick)
+  $('.help').text('')
   store.game = response.game
 }
 
@@ -63,16 +67,15 @@ const onCreateGameFailure = function (response) {
 }
 
 const onUpdateGameSuccessful = function (response) {
-  $('#message').text('yes')
 }
 
 const onUpdateGameFailure = function (response) {
   $('#message').text('rip')
 }
 
-const onGameOver = function (response) {
-  $('#help').off()
+const onGameOver = function () {
   $('#message').text('game over')
+  $('.box').off()
 }
 
 // const player_x = 'X'

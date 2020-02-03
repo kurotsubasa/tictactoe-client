@@ -1,19 +1,45 @@
 @import '~bootstrap/scss/bootstrap';
 
+* {
+  font-family: 'Dancing Script', cursive;
+
+}
+h1 {
+  background-color: #85bb65;
+}
 .container {
   border: 10px solid $white;
   padding: 5px solid $white;
-  background-color: $black;
 }
 
 .box {
-  background-color: $white;
-  height: 100px;
+  height: 20vh;
+  border-right: 5px solid $white;
+  font-size: 10rem;
+  text-align: center;
+  align-items: center;
 }
-.success{
 
+#message {
+  background-color: #cf07f2;
 }
 
-.failure{
+#sign-up {
+  background-color: #fa7b62;
+}
 
+#sign-in {
+background-color: #d79e07;
+}
+
+#change-password {
+  background-color: #0768d7;
+}
+
+#sign-out {
+  background-color: #990000;
+}
+
+.input {
+  opacity: 0.75;
 }

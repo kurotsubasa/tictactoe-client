@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>tictactoe</title>
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -13,8 +15,8 @@
     </head>
     <body>
     <header>
-      <nav>
-      <button type='button' id='gameStart'>Start Game!</button>
+      <nav class='navbar navbar-dark bg-dark'>
+      <button type='button' class='btn btn-primary' id='gameStart'>Start Game!</button>
       <p id='user'></p>
       </nav>
     </header>
@@ -25,19 +27,19 @@
           <form id='sign-up'>
             <fieldset>
               <legend>Sign Up!</legend>
-              <input name="credentials[email]" type="email" placeholder="you@example.com">
-              <input name="credentials[password]" type="password" placeholder="Password">
-              <input name="credentials[password_confirmation]" type="password" placeholder="Confirm Password">
-              <input type='submit' value='Sign up!'>
+              <input name="credentials[email]"  class='form-control' type="email" placeholder="you@example.com">
+              <input name="credentials[password]" class='form-control' type="password" placeholder="Password">
+              <input name="credentials[password_confirmation]" class='form-control' type="password" placeholder="Confirm Password">
+              <input type='submit' class='btn btn-secondary' value='Sign up!'>
             </fieldset>
         </form>
 
         <form id='sign-in'>
           <fieldset>
             <legend>Sign in!</legend>
-            <input name="credentials[email]" type="email" placeholder="example@example.com">
-            <input name="credentials[password]" type="password" placeholder="Password">
-            <input type="submit" value="Sign In!">
+            <input name="credentials[email]" class='form-control' type="email" placeholder="example@example.com">
+            <input name="credentials[password]" class='form-control' type="password" placeholder="Password">
+            <input type="submit" class='btn btn-secondary' value="Sign In!">
           </fieldset>
         </form>
 
@@ -59,15 +61,15 @@
 
           <div class='container text-center'>
             <div class='row'>
-              <div class='help box col-4' data-cell-index='0' id='1'></div>
-              <div class='help box col-4' data-cell-index='1' id='6'></div>
-              <div class='help box col-4' data-cell-index='2' id='5'></div>
-              <div class='help box col-4' data-cell-index='3' id='8'></div>
-              <div class='help box col-4' data-cell-index='4' id='4'></div>
-              <div class='help box col-4' data-cell-index='5' id='0'></div>
-              <div class='help box col-4' data-cell-index='6' id='3'></div>
-              <div class='help box col-4' data-cell-index='7' id='2'></div>
-              <div class='help box col-4' data-cell-index='8' id='7'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='0' id='1'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='1' id='6'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='2' id='5'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='3' id='8'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='4' id='4'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='5' id='0'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='6' id='3'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='7' id='2'></div>
+              <div class='help box bg-primary mt-1 col-4' data-cell-index='8' id='7'></div>
             </div>
           </div>
     </main>

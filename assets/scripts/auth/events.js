@@ -3,37 +3,25 @@
 const getFormFields = require('./../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('./../store')
 const gridValue = []
 
-function winOrNo () {
-  for (let i = 0; i < gridValue.length; i++) {
-    let totalX = 0
-    let totalO = 0
+const xWing = []
+const oKay = []
 
-    if (i === 0 || i % 2 === 0) {
-      totalX += gridValue[i]
-      if (totalX === 15) {
-        return true
-      } else {
-        return false
-      }
-    } else {
-      totalO += gridValue[i]
-      if (totalO === 15) {
-        return true
-      } else {
-        return false
+function winOrNo (array) {
+  for (let i = 0; i < 5; i++) {
+    for (let h = 0; h < 5; h++) {
+      for (let m = 0; m < 5; m++) {
+        if ((i !== h) && (i !== m) && (h !== m)) {
+          if (array[i] + array[h] + array[m] === 15) {
+            return true
+          }
+        }
       }
     }
   }
-}
-
-function over (endGame) {
-  if (endGame === true) {
-    return endGame
-  } else {
-    return false
-  }
+  return false
 }
 
 const onSignUp = function (event) {
@@ -107,14 +95,30 @@ let currentPlayer = players[0]
 
 const onClick = event => {
   event.preventDefault()
-  gridValue.push((Number(event.target) + 1))
-  over(winOrNo)
   const ew = event.target.getAttribute('data-cell-index')
 
   if ($(event.target).text() === '') {
     $(event.target).text(currentPlayer)
+    gridValue.push((Number(event.target.id) + 1))
+    if (currentPlayer === players[0]) {
+      currentPlayer = players[1]
+      xWing.push((Number(event.target.id) + 1))
+    } else {
+      currentPlayer = players[0]
+      oKay.push((Number(event.target.id) + 1))
+    }
   } else {
     $('#message').text('this spot is taken')
+  }
+
+  function letItEnd () {
+    let theEnd
+    if ((winOrNo(xWing) === true) || (winOrNo(oKay) === true)) {
+      theEnd = true
+    } else {
+      theEnd = false
+    }
+    return theEnd
   }
 
   const data = {
@@ -123,25 +127,23 @@ const onClick = event => {
         'index': `${ew}`,
         'value': `${currentPlayer}`
       },
-      'over': over(winOrNo)
+      'over': letItEnd()
     }
   }
 
-  if (currentPlayer === players[0]) {
-    currentPlayer = players[1]
-  } else {
-    currentPlayer = players[0]
-  }
+  store.hwat = data
+  console.log(xWing)
+  console.log(store.data)
+  console.log(data)
+  console.log(gridValue)
+  console.log(store.hwat.game.over)
 
+  if (store.hwat.game.over === true) {
+    ui.onGameOver()
+  }
   api.updateGame(data)
     .then(ui.onUpdateGameSuccessful)
     .catch(ui.onUpdateGameFailure)
-}
-
-const onGameEnd = event => {
-  if (over(winOrNo) === true) {
-    ui.onGameOver
-  }
 }
 
 module.exports = {
