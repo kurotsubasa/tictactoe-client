@@ -44,14 +44,21 @@ const signOut = function (data) {
 const getGames = () => {
   return $.ajax({
     method: 'GET',
-    url: config.apiUrl + '/games'
+    url: config.apiUrl + '/games',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
 const getGame = (formData) => {
   return $.ajax({
     method: 'GET',
-    url: config.apiUrl + '/games/' + store.game.id
+    url: config.apiUrl + '/games/' + store.game.id,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: formData
   })
 }
 

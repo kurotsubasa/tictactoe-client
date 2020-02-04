@@ -4,16 +4,16 @@ const getFormFields = require('./../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('./../store')
-const gridValue = []
+let gridValue = []
 
-const xWing = []
-const oKay = []
+let xWing = []
+let oKay = []
 
 function winOrNo (array) {
-  for (let i = 0; i < 5; i++) {
-    for (let h = 0; h < 5; h++) {
-      for (let m = 0; m < 5; m++) {
-        if ((i !== h) && (i !== m) && (h !== m)) {
+  for (let i = 0; i < array.length; i++) {
+    for (let h = 0; h < array.length; h++) {
+      for (let m = 0; m < array.length; m++) {
+        if ((i !== h) && (h !== m) && (i !== m)) {
           if (array[i] + array[h] + array[m] === 15) {
             return true
           }
@@ -82,6 +82,10 @@ const onGetGame = event => {
 
 const onCreateGame = event => {
   event.preventDefault()
+  currentPlayer = players[0]
+  xWing = []
+  oKay = []
+  gridValue = []
   const form = event.target
   const formData = getFormFields(form)
 
@@ -92,6 +96,7 @@ const onCreateGame = event => {
 
 const players = ['x', 'o']
 let currentPlayer = players[0]
+let turns = 0
 
 const onClick = event => {
   event.preventDefault()
@@ -111,14 +116,22 @@ const onClick = event => {
     $('#message').text('this spot is taken')
   }
 
+  turns++
+
   function letItEnd () {
     let theEnd
-    if ((winOrNo(xWing) === true) || (winOrNo(oKay) === true)) {
+
+    if (turns === 9) {
       theEnd = true
+      ui.onTie()
     } else {
-      theEnd = false
+      if ((winOrNo(xWing) === true) || (winOrNo(oKay) === true)) {
+        theEnd = true
+      } else {
+        theEnd = false
+      }
+      return theEnd
     }
-    return theEnd
   }
 
   const data = {
@@ -132,18 +145,21 @@ const onClick = event => {
   }
 
   store.hwat = data
-  console.log(xWing)
-  console.log(store.data)
-  console.log(data)
-  console.log(gridValue)
-  console.log(store.hwat.game.over)
-
   if (store.hwat.game.over === true) {
     ui.onGameOver()
   }
+
   api.updateGame(data)
     .then(ui.onUpdateGameSuccessful)
     .catch(ui.onUpdateGameFailure)
+}
+
+const onMouseOver = event => {
+  $(event.target).css('background-color', 'red')
+}
+
+const onMouseOut = event => {
+  $(event.target).css('background-color', '#0768d7')
 }
 
 module.exports = {
@@ -154,5 +170,7 @@ module.exports = {
   onGetGames,
   onGetGame,
   onCreateGame,
-  onClick
+  onClick,
+  onMouseOver,
+  onMouseOut
 }

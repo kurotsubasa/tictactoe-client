@@ -4,20 +4,19 @@ const store = require('./../store')
 const events = require('./events')
 
 const onSignUpSuccess = function (response) {
-  $('#message').text('Welcome to the beginning of your defeat ' + response.user.email)
+  $('#message').text('Welcome to the beginning of your defeat ' + response.user.email + ', now please sign in :p')
   $('#sign-up').trigger('reset')
-  $('#message').removeClass()
-  $('#message').addClass('.success')
 }
 
 const onSignUpFailure = function (response) {
   $('#message').text('Sign up failed')
   $('#message').removeClass()
   $('#message').addClass('.failure')
+  $('#sign-up').trigger('reset')
 }
 
 const onSignInSuccess = function (response) {
-  $('#message').text('Welcome back ' + response.user.email)
+  $('#message').text('Welcome back ' + response.user.email + ', please click Start game to begin playing :)')
   $('#sign-in').trigger('reset')
   store.user = response.user
   $('#sign-out').show()
@@ -28,6 +27,7 @@ const onSignInSuccess = function (response) {
 
 const onSignInFailure = function (response) {
   $('#message').text('Sign in failed')
+  $('#sign-in').trigger('reset')
 }
 
 const onChangePasswordSuccess = function (response) {
@@ -37,6 +37,7 @@ const onChangePasswordSuccess = function (response) {
 
 const onChangePasswordFailure = function (response) {
   $('#message').text('password change failed')
+  $('#change-password').trigger('reset')
 }
 
 const onSignOutSuccess = function (response) {
@@ -57,9 +58,9 @@ const onCreateGameSuccessful = function (response) {
   $('.container').show()
   $('.box').show()
   $('.help').trigger('reset')
-  $('.help').on('click', events.onClick)
   $('.help').text('')
   store.game = response.game
+  $('#bweh').hide()
 }
 
 const onCreateGameFailure = function (response) {
@@ -67,15 +68,28 @@ const onCreateGameFailure = function (response) {
 }
 
 const onUpdateGameSuccessful = function (response) {
+  console.log('meh')
 }
 
 const onUpdateGameFailure = function (response) {
   $('#message').text('rip')
 }
 
+const onGetGamesSuccessful = function (response) {
+  $('#message').text(('youve played ') + (response.games).length + ' games')
+}
+
+const onGetGamesFailure = function (response) {
+  $('#message').text('cannot get games')
+}
+
 const onGameOver = function () {
   $('#message').text('game over')
-  $('.box').off()
+  $('#bweh').show()
+}
+
+const onTie = function () {
+  $('#message').text('is a tie')
 }
 
 // const player_x = 'X'
@@ -108,5 +122,8 @@ module.exports = {
   onCreateGameFailure,
   onUpdateGameSuccessful,
   onUpdateGameFailure,
-  onGameOver
+  onGameOver,
+  onTie,
+  onGetGamesSuccessful,
+  onGetGamesFailure
 }

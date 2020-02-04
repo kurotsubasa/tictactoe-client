@@ -17,4 +17,8 @@ $(() => {
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('.help').on('click', authEvents.onClick)
   $('#gameStart').on('click', authEvents.onCreateGame)
+  $('#gameShow').on('click', authEvents.onGetGames)
+  $('#bweh').hide()
+  $('.help').on('mouseover', authEvents.onMouseOver)
+  $('.help').on('mouseout', authEvents.onMouseOut)
 })

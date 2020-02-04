@@ -4,20 +4,32 @@
   font-family: 'Dancing Script', cursive;
 
 }
+
+html {
+background-image: url(https://ak6.picdn.net/shutterstock/videos/16234756/thumb/1.jpg);
+
+}
+
+main {
+background-image: url(https://ak6.picdn.net/shutterstock/videos/16234756/thumb/1.jpg);
+background-size: cover;
+}
+
 h1 {
   background-color: #85bb65;
 }
+
 .container {
-  border: 10px solid $white;
-  padding: 5px solid $white;
+  background: white;
 }
 
 .box {
   height: 20vh;
   border-right: 5px solid $white;
+  border-left: 5px solid $white;
+  border-bottom: 5px solid $white;
   font-size: 10rem;
   text-align: center;
-  align-items: center;
 }
 
 #message {
@@ -40,6 +52,21 @@ background-color: #d79e07;
   background-color: #990000;
 }
 
-.input {
-  opacity: 0.75;
+input {
+  opacity: 0.7;
+}
+
+.help {
+  background-color: #0768d7;
+}
+
+#bweh {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: absolute;
+  background-image: url(https://i.etsystatic.com/14449774/r/il/1b220b/1577060190/il_570xN.1577060190_gr21.jpg);
+  opacity: 0.6;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
