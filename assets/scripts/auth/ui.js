@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('./../store')
-const events = require('./events')
 
 const onSignUpSuccess = function (response) {
   $('#message').text('Welcome to the beginning of your defeat ' + response.user.email + ', now please sign in :p')
@@ -10,8 +9,6 @@ const onSignUpSuccess = function (response) {
 
 const onSignUpFailure = function (response) {
   $('#message').text('Sign up failed')
-  $('#message').removeClass()
-  $('#message').addClass('.failure')
   $('#sign-up').trigger('reset')
 }
 
