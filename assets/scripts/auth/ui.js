@@ -29,7 +29,7 @@ const onSignInFailure = function (response) {
 }
 
 const onChangePasswordSuccess = function (response) {
-  $('message').text('successfully changed password')
+  $('#message').text('successfully changed password')
   $('#change-password').trigger('reset')
 }
 
