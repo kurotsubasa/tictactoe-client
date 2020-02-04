@@ -147,6 +147,7 @@ const onClick = event => {
   store.hwat = data
   if (store.hwat.game.over === true) {
     ui.onGameOver()
+    $('#message').text(currentPlayer + ' loses!')
   }
 
   api.updateGame(data)
@@ -172,5 +173,6 @@ module.exports = {
   onCreateGame,
   onClick,
   onMouseOver,
-  onMouseOut
+  onMouseOut,
+  currentPlayer
 }

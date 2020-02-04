@@ -21,6 +21,7 @@ const onSignInSuccess = function (response) {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#intro').hide()
+  $('.navbar').show()
 }
 
 const onSignInFailure = function (response) {
@@ -67,7 +68,6 @@ const onCreateGameFailure = function (response) {
 }
 
 const onUpdateGameSuccessful = function (response) {
-  console.log('meh')
 }
 
 const onUpdateGameFailure = function (response) {
@@ -83,7 +83,6 @@ const onGetGamesFailure = function (response) {
 }
 
 const onGameOver = function () {
-  $('#message').text('game over')
   $('#bweh').show()
 }
 

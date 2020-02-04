@@ -21,4 +21,5 @@ $(() => {
   $('#bweh').hide()
   $('.help').on('mouseover', authEvents.onMouseOver)
   $('.help').on('mouseout', authEvents.onMouseOut)
+  $('.navbar').hide()
 })
