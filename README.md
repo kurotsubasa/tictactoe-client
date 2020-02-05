@@ -26,6 +26,8 @@ README
 -As a player, I want to be able to change the board skin so that i can customize the appearance of the game
 
 ### Wireframes
+https://giphy.com/gifs/mDMLacE7cqjVzLkeOx
+https://giphy.com/gifs/H7Z2LHavstXy0ZdTgd
   
 
 ### Technologies used
