@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>tictactoe</title>
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+    <header>
+      <nav class='navbar navbar-dark bg-dark'>
+      <button type='button' class='btn btn-primary' id='gameStart'>Start Game!</button>
+      <button type='button' class='btn btn-primary' id='gameShow'>How many games?</button>
+      </nav>
+    </header>
+
+    <main>
+        <h1 id='ttt'>TICTACTOE</h1>
+          <h2 id='message'></h2>
+          <form id='sign-up'>
+            <fieldset>
+              <legend>Sign Up!</legend>
+              <input name="credentials[email]"  class='form-control' type="email" placeholder="you@example.com">
+              <input name="credentials[password]" class='form-control' type="password" placeholder="Password">
+              <input name="credentials[password_confirmation]" class='form-control' type="password" placeholder="Confirm Password">
+              <input type='submit' class='btn btn-secondary' value='Sign up!'>
+            </fieldset>
+        </form>
+
+        <form id='sign-in'>
+          <fieldset>
+            <legend>Sign in!</legend>
+            <input name="credentials[email]" class='form-control' type="email" placeholder="example@example.com">
+            <input name="credentials[password]" class='form-control' type="password" placeholder="Password">
+            <input type="submit" class='btn btn-secondary' value="Sign In!">
+          </fieldset>
+        </form>
+
+        <form id='change-password'>
+          <fieldset>
+            <legend>Change Password!</legend>
+            <input name="passwords[old]" type="password" placeholder="Old Password">
+            <input name="passwords[new]" type="password" placeholder="New Password">
+            <input type="submit" value="Change password">
+          </fieldset>
+        </form>
+
+        <form id='sign-out'>
+          <fieldset>
+            <legend>Sign Out!</legend>
+            <input type="submit" value="Sign Out">
+          </fieldset>
+        </form>
+
+          <div id='bweh'></div>
+          <div class='container text-center'>
+
+            <div class='row'>
+              <div class='help box col-4' data-cell-index='0' id='1'></div>
+              <div class='help box align-middle col-4' data-cell-index='1' id='6'></div>
+              <div class='help box align-middle col-4' data-cell-index='2' id='5'></div>
+            </div>
+            <div class='row'>
+              <div class='help box align-middle col-4' data-cell-index='3' id='8'></div>
+              <div class='help box align-middle col-4' data-cell-index='4' id='4'></div>
+              <div class='help box align-middle col-4' data-cell-index='5' id='0'></div>
+            </div>
+            <div class='row'>
+              <div class='help box align-middle col-4' data-cell-index='6' id='3'></div>
+              <div class='help box align-middle col-4' data-cell-index='7' id='2'></div>
+              <div class='help box align-middle col-4' data-cell-index='8' id='7'></div>
+            </div>
+          </div>
+        <div id='intro'>
+          <h2 id='introHead'>Tic Tac Toe</h2>
+          <p>Tic tac toe, also known as noughts and crosses by our neighbors
+            across the pond, was originally a simple game played by hand due
+            to how simple the game is.  The goal of the game is to attain
+            3 of your marks, whether it be X or O, in a straight line.  That
+            means the line can be either horizontally, vertically, or even diagonally.
+            With the advent of the digital age, we have this long lived game
+            right at our fingertips, so good luck and have fun!</p>
+        </div>
+    </main>
+  </body>
+</html>
