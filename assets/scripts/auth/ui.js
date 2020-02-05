@@ -48,6 +48,7 @@ const onSignOutSuccess = function (response) {
   $('.container').hide()
   $('#intro').show()
   $('#bweh').hide()
+  $('.navbar').hide()
 }
 
 const onSignOutFailure = function (response) {
