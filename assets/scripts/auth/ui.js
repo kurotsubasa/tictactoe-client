@@ -40,7 +40,7 @@ const onChangePasswordFailure = function (response) {
 }
 
 const onSignOutSuccess = function (response) {
-  $('message').text('successfully signed out')
+  $('#message').text('successfully signed out')
   $('#change-password').hide()
   $('#sign-out').hide()
   $('#sign-up').show()
