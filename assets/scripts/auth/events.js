@@ -143,13 +143,12 @@ const onClick = event => {
       'over': letItEnd()
     }
   }
-
+  $('#message').text(currentPlayer + ' is playing')
   store.hwat = data
   if (store.hwat.game.over === true) {
     ui.onGameOver()
     $('#message').text(currentPlayer + ' loses!')
   }
-
   api.updateGame(data)
     .then(ui.onUpdateGameSuccessful)
     .catch(ui.onUpdateGameFailure)

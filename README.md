@@ -25,6 +25,9 @@ README
 -As a user, I want to be able to display information I want my opponent to see
 -As a player, I want to be able to change the board skin so that i can customize the appearance of the game
 
+### Wireframes
+  
+
 ### Technologies used
   -jQuery
   -HTML/CSS
